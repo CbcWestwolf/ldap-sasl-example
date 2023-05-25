@@ -1,9 +1,9 @@
 #!/bin/bash
 
-ulimit -n 1024
-echo "127.0.0.1 localhost example.org" >> /etc/hosts
-service slapd start
-service krb5-kdc start
+# ulimit -n 1024
+# echo "127.0.0.1 localhost example.org" >> /etc/hosts
+# service slapd start
+# service krb5-kdc start
 
 printf "123456" | kinit cbc
 
