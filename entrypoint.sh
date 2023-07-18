@@ -13,7 +13,18 @@ mysql -h 127.0.0.1 -u root -P 4000 -e "set global authentication_ldap_sasl_serve
 mysql -h 127.0.0.1 -u root -P 4000 -e "set global authentication_ldap_sasl_bind_base_dn='dc=example,dc=org';"
 mysql -h 127.0.0.1 -u root -P 4000 -e "set global authentication_ldap_sasl_bind_root_dn='cn=admin,dc=example,dc=org';"
 mysql -h 127.0.0.1 -u root -P 4000 -e "set global authentication_ldap_sasl_bind_root_pwd='123456';"
-mysql -h 127.0.0.1 -u root -P 4000 -e "create user yangkeao IDENTIFIED WITH authentication_ldap_sasl as 'cn=yangkeao+uid=yangkeao,dc=example,dc=org';"
+mysql -h 127.0.0.1 -u root -P 4000 -e "set global authentication_ldap_simple_server_host='127.0.0.1';"
+mysql -h 127.0.0.1 -u root -P 4000 -e "set global authentication_ldap_simple_bind_base_dn='dc=example,dc=org';"
+mysql -h 127.0.0.1 -u root -P 4000 -e "set global authentication_ldap_simple_bind_root_dn='cn=admin,dc=example,dc=org';"
+mysql -h 127.0.0.1 -u root -P 4000 -e "set global authentication_ldap_simple_bind_root_pwd='123456';"
+
+# Simple
+mysql -h 127.0.0.1 -u root -P 4000 -e "create user yangkeao IDENTIFIED WITH authentication_ldap_simple as 'cn=yangkeao+uid=yangkeao,dc=example,dc=org';"
+
+# # SCRAM-SHA-{1,256}
+# mysql -h 127.0.0.1 -u root -P 4000 -e "create user yangkeao IDENTIFIED WITH authentication_ldap_sasl as 'cn=yangkeao+uid=yangkeao,dc=example,dc=org';"
+
+# GSSAPI
 mysql -h 127.0.0.1 -u root -P 4000 -e "create user cbc IDENTIFIED WITH authentication_ldap_sasl as 'uid=cbc,dc=example,dc=org';"
 
 exec "$@"
